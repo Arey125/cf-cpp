@@ -1,5 +1,6 @@
 BUILDDIR=./build
 BINARY=$(BUILDDIR)/cf-cpp
+DEBUGBINARY=$(BUILDDIR)/cf-cpp-debug
 
 all: $(BINARY)
 
@@ -12,4 +13,12 @@ clean:
 	rm -rf $(BUILDDIR)
 
 run: all
-	@./$(BINARY)
+	@$(BINARY)
+
+test: all
+	@$(BINARY) < input.txt
+
+debug:
+	@mkdir -p $(BUILDDIR)
+	@g++ -g -o $(DEBUGBINARY) main.cpp
+	@gdb $(DEBUGBINARY)
