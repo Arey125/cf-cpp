@@ -26,39 +26,8 @@ ostream &operator<<(ostream &out, const vi &a) {
     return out;
 }
  
-int solve() {
-    li n, k;
-    cin >> n >> k;
-    vi a(n);
-    cin >> a;
+void solve() {
 
-    int first = 0, last = n - 1;
-    int res = 0;
-    while (first < last) {
-        auto mn = min({a[first], a[last], k / 2});
-        a[first] -= mn;
-        a[last] -= mn;
-        k -= 2 * mn;
-
-        if (a[first] == 0) {
-            res++;
-            first++;
-        }
-        if (a[last] == 0) {
-            res++;
-            last--;
-        }
-
-        if (k < 2) {
-            break;
-        }
-    }
-
-    if (a[first] > 0 && a[first] <= k) {
-        res++;
-    }
-
-    return res;
 }
  
 int main() {
@@ -69,6 +38,6 @@ int main() {
     int n;
     cin >> n;
     forn(i, n) { 
-        cout << solve() << endl;
+        solve();
     }
 }
